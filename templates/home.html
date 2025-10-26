@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket Booking</title>
+</head>
+<body>
+    <h1>Ticket Booking Application</h1>
+    <ul>
+        {% for ticket in tickets %}
+        <li>
+            {{ ticket.event }} - Available: {{ ticket.available }}
+            {% if ticket.available > 0 %}
+            <form action="{{ url_for('book', ticket_id=ticket.id) }}" method="POST" style="display:inline;">
+                <button type="submit">Book</button>
+            </form>
+            {% else %}
+            <span>Sold Out</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
